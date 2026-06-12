@@ -11,7 +11,10 @@ python3 -c "import tkinter" 2>/dev/null || {
     exit 1
 }
 
-python3 -m pip install --user --upgrade pyinstaller Pillow
+# Install build deps only when missing (Debian 13+ blocks global pip installs)
+python3 -m PyInstaller --version >/dev/null 2>&1 || \
+    python3 -m pip install --user --upgrade pyinstaller Pillow || \
+    python3 -m pip install --user --break-system-packages --upgrade pyinstaller Pillow
 
 python3 -m PyInstaller \
     --noconfirm \
