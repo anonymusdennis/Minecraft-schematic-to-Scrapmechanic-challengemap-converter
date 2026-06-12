@@ -246,8 +246,6 @@ source:
 |------|------|
 | **GitHub** (source + releases) | this repository |
 | **itch.io** (standalone builds) | <https://anonymusdennis.itch.io/mc-schematic-to-scrapmechanic> |
-| **ModDB** (Scrap Mechanic mods section) | <https://www.moddb.com/games/scrap-mechanic/mods> |
-| **SourceForge** (downloads mirror) | <https://sourceforge.net/projects/mc-schematic-to-scrapmechanic/> |
 
 ## License & credits
 
