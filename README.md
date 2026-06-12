@@ -138,7 +138,10 @@ low-priority pack beats a flat furnace from a high-priority one, while
 textures keep normal priority and each model loads textures from its own
 pack first (no mismatched art).
 
-Bundled 3D packs (name yours anything before `y` to outrank them):
+The eight 3D packs below are a **required dependency** and ship with the
+tool: they're committed in `resourcepacks/`, and the standalone executables
+have them embedded — on first run they unpack into a `resourcepacks/` folder
+next to the binary. Name your own packs anything before `y` to outrank them:
 
 | Pack | Covers | License |
 |------|--------|---------|
@@ -165,9 +168,10 @@ rejected, and block interiors take the dominant surface color.
 build_windows.bat       # on Windows -> dist\mc2sm.exe
 ```
 
-PyInstaller can't cross-compile, so run each script on its own OS. The binary
-keeps its data (`vanilla_assets/`, `resourcepacks/`, caches) next to the
-executable and downloads the vanilla asset base on first run.
+PyInstaller can't cross-compile, so run each script on its own OS. The
+required 3D resource packs are **embedded in the executable** and unpack
+next to it on first run; the vanilla asset base is downloaded there on first
+run too. Drop extra packs into that same `resourcepacks/` folder.
 
 ## CLI reference
 

@@ -16,15 +16,22 @@ python3 -m PyInstaller --version >/dev/null 2>&1 || \
     python3 -m pip install --user --upgrade pyinstaller Pillow || \
     python3 -m pip install --user --break-system-packages --upgrade pyinstaller Pillow
 
+[ -d resourcepacks ] || {
+    echo "ERROR: resourcepacks/ missing — the bundled 3D packs are a required dependency."
+    exit 1
+}
+
 python3 -m PyInstaller \
     --noconfirm \
     --onefile \
     --windowed \
     --name mc2sm \
     --hidden-import PIL._tkinter_finder \
+    --add-data "resourcepacks:resourcepacks" \
     gui.py
 
 echo
 echo "Build complete: dist/mc2sm"
-echo "Note: the app downloads vanilla Minecraft assets next to the binary on"
-echo "first run, and reads resource packs from a 'resourcepacks' folder there."
+echo "The required 3D resource packs are embedded in the binary and unpack"
+echo "into a 'resourcepacks' folder next to it on first run. Vanilla assets"
+echo "are downloaded next to the binary on first run as well."

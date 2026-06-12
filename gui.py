@@ -492,6 +492,15 @@ class ConverterGUI:
 
 
 def main():
+    # Frozen builds: unpack the bundled 3D resource packs next to the binary
+    # right away so the user sees them and conversions find them.
+    try:
+        from asset_resolution import bootstrap_bundled_packs
+
+        bootstrap_bundled_packs()
+    except Exception:
+        pass
+
     root = tk.Tk()
     try:
         ttk.Style().theme_use("clam")

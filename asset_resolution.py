@@ -13,6 +13,8 @@ Search order for every asset (blockstate, model, texture):
 
 from __future__ import annotations
 
+import shutil
+import sys
 import zipfile
 from functools import lru_cache
 from pathlib import Path
@@ -24,6 +26,32 @@ RESOURCEPACKS_DIR = PROJECT_ROOT / "resourcepacks"
 SUPPLEMENT_ASSETS = PROJECT_ROOT / "supplement_assets"
 VANILLA_ASSETS = PROJECT_ROOT / "vanilla_assets"
 _ZIP_CACHE = PROJECT_ROOT / ".cache" / "resourcepacks"
+
+
+def bootstrap_bundled_packs():
+    """
+    Frozen (PyInstaller) builds ship the required 3D resource packs inside the
+    executable. Copy any missing pack into the user-visible resourcepacks/
+    folder next to the binary so they load like normal packs and the user can
+    add or replace packs alongside them.
+    """
+    if not getattr(sys, "frozen", False):
+        return
+    bundled = Path(getattr(sys, "_MEIPASS", "")) / "resourcepacks"
+    if not bundled.is_dir():
+        return
+    try:
+        RESOURCEPACKS_DIR.mkdir(parents=True, exist_ok=True)
+        for entry in bundled.iterdir():
+            dest = RESOURCEPACKS_DIR / entry.name
+            if dest.exists():
+                continue
+            if entry.is_dir():
+                shutil.copytree(entry, dest)
+            else:
+                shutil.copy2(entry, dest)
+    except Exception as e:  # never block conversion on bootstrap problems
+        print(f"Warning: could not unpack bundled resource packs: {e}")
 
 
 def _extract_zip_pack(zip_path: Path) -> Path | None:
@@ -53,6 +81,7 @@ def _pack_assets_root(pack_dir: Path) -> Path | None:
 
 @lru_cache(maxsize=8)
 def _resourcepack_roots() -> tuple[Path, ...]:
+    bootstrap_bundled_packs()
     roots: list[Path] = []
     if RESOURCEPACKS_DIR.is_dir():
         for entry in sorted(RESOURCEPACKS_DIR.iterdir(), key=lambda p: p.name.lower()):

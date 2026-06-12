@@ -37,8 +37,11 @@ Thumbs.db
 # Downloaded vanilla asset base (regenerate with download_vanilla_assets.py)
 vanilla_assets/
 
-# User resource packs (drop folders or .zip files here)
-resourcepacks/
+# Bundled 3D packs (required dependency) ARE tracked; extra user packs
+# (anything not starting with y/zzz) are ignored.
+resourcepacks/*
+!resourcepacks/y*.zip
+!resourcepacks/zzz*.zip
 
 # PyInstaller
 *.spec
