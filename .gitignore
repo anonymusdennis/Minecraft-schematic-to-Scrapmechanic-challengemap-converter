@@ -34,7 +34,20 @@ wheels/
 .DS_Store
 Thumbs.db
 
+# Downloaded vanilla asset base (regenerate with download_vanilla_assets.py)
+vanilla_assets/
+
+# User resource packs (drop folders or .zip files here)
+resourcepacks/
+
+# PyInstaller
+*.spec
+
+# Generated test schematic (regenerate with generate_test_map.py)
+test_map.json
+
 # Generated blueprints
+.cache/
 ScrapMechanicBlueprints/
 output/
 test_blueprints*/
