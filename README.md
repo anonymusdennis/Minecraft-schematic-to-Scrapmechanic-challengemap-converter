@@ -1,8 +1,6 @@
 # Minecraft Schematic → Scrap Mechanic Challenge Map Converter
 
 [![itch.io](https://img.shields.io/badge/itch.io-Download-FA5C5C?logo=itchdotio&logoColor=white)](https://anonymusdennis.itch.io/mc-schematic-to-scrapmechanic)
-[![ModDB](https://img.shields.io/badge/ModDB-Scrap%20Mechanic-CC0000)](https://www.moddb.com/games/scrap-mechanic/mods)
-[![SourceForge](https://img.shields.io/badge/SourceForge-Download-FF6600?logo=sourceforge&logoColor=white)](https://sourceforge.net/projects/mc-schematic-to-scrapmechanic/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Tests](https://img.shields.io/badge/tests-67%20passing-brightgreen)](#tests)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
